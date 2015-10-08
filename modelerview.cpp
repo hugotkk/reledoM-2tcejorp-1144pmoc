@@ -90,6 +90,7 @@ void ModelerView::draw()
 		glEnable( GL_LIGHT0 );
         glEnable( GL_LIGHT1 );
 		glEnable( GL_NORMALIZE );
+		glClearColor(1,1,1,1);
     }
 
   	glViewport( 0, 0, w(), h() );

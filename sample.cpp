@@ -57,14 +57,15 @@ void SampleModel::draw()
 		glPushMatrix();
 		glRotated(VAL(ROTATE), 0.0, 1.0, 0.0);
 		glRotated(-90, 1.0, 0.0, 0.0);
-		drawCylinder(VAL(HEIGHT), 0.1, 0.1);
+		drawCylinder(VAL(HEIGHT), 0.1, 0.1); // square
 
 		glTranslated(0.0, 0.0, VAL(HEIGHT));
-		drawCylinder(1, 1.0, 0.9);
+		drawCylinder(1, 1.0, 0.9); // head
 
 		glTranslated(0.0, 0.0, 0.5);
 		glRotated(90, 1.0, 0.0, 0.0);
-		drawCylinder(4, 0.1, 0.2);
+		drawCylinder(4, 0.1, 0.2); // canon
+
 		glPopMatrix();
 
 	glPopMatrix();

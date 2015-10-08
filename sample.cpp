@@ -3,6 +3,7 @@
 #include "modelerview.h"
 #include "modelerapp.h"
 #include "modelerdraw.h"
+#include "Minion.h"
 #include <FL/gl.h>
 
 #include "modelerglobals.h"
@@ -21,7 +22,7 @@ public:
 // nasty API stuff that we'd rather stay away from.
 ModelerView* createSampleModel(int x, int y, int w, int h, char *label)
 { 
-    return new SampleModel(x,y,w,h,label); 
+    return new Minion(x,y,w,h,label); 
 }
 
 // We are going to override (is that the right word?) the draw()
@@ -75,7 +76,7 @@ void SampleModel::draw()
 			glPushMatrix();
 			setDiffuseColor(COLOR_RED);
 			glTranslated(0, 0, 2);
-			// glRotated(-90, 1.0, 0.0, 0.0);
+			glRotated(VAL(ROTATE), 1.0, 0.0, 0.0);
 			drawCylinder(0.25, 0.25, 0.25); // head joint
 
 				glPushMatrix();
@@ -179,6 +180,9 @@ void SampleModel::draw()
 			// arm1 start
 			setDiffuseColor(COLOR_YELLOW);
 			glTranslated(-2.8,0,1);
+			glTranslated(0, 0.25, 1);
+			glRotated(VAL(ROTATE), 1.0, 0, 0);
+			glTranslated(0, -0.25, -1.07);
 			drawBox(0.5,0.5,1.07);
 			// arm joint start
 			glPushMatrix();
@@ -305,7 +309,13 @@ int main()
     controls[ZPOS] = ModelerControl("Z Position", -5, 5, 0.1f, 0);
     controls[HEIGHT] = ModelerControl("Height", 1, 2.5, 0.1f, 1);
 	controls[ROTATE] = ModelerControl("Rotate", -135, 135, 1, 0);
-
+	controls[HEAD_X_ROTATION] = ModelerControl("Head X Rotate", -5, 5, 1, 0);
+	controls[HEAD_Y_ROTATION] = ModelerControl("Head Y Rotate", -5, 5, 1, 0);
+	controls[HEAD_Z_ROTATION] = ModelerControl("Head Z Rotate", -30, 30, 1, 0);
+	controls[LEFT_UPPER_ARM_ROTATION] = ModelerControl("Left Upper Arm Rotation", -110, 180, 1, 0);
+	controls[LEFT_FORE_ARM_ROTATION] = ModelerControl("Left Fore Arm Rotation", 0, 160, 1, 0);
+	controls[RIGHT_UPPER_ARM_ROTATION] = ModelerControl("Right Upper Arm Rotation", -110, 180, 1, 0);
+	controls[RIGHT_FORE_ARM_ROTATION] = ModelerControl("Right Fore Arm Rotation", 0, 160, 1, 0);
     ModelerApplication::Instance()->Init(&createSampleModel, controls, NUMCONTROLS);
     return ModelerApplication::Instance()->Run();
 }

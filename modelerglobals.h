@@ -8,10 +8,24 @@
 // This is a list of the controls for the SampleModel
 // We'll use these constants to access the values 
 // of the controls from the user interface.
+
 enum SampleModelControls
 { 
-	XPOS, YPOS, ZPOS, HEIGHT, ROTATE, NUMCONTROLS
+	XPOS, 
+	YPOS, 
+	ZPOS,
+	HEIGHT, 
+	ROTATE,
+	HEAD_X_ROTATION,
+	HEAD_Y_ROTATION,
+	HEAD_Z_ROTATION,
+	LEFT_UPPER_ARM_ROTATION,
+	LEFT_FORE_ARM_ROTATION,
+	RIGHT_UPPER_ARM_ROTATION,
+	RIGHT_FORE_ARM_ROTATION,
+	NUMCONTROLS
 };
+
 
 // Colors
 #define COLOR_RED		1.0f, 0.0f, 0.0f

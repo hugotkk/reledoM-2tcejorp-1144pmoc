@@ -211,6 +211,7 @@ void SampleModel::draw()
 			setDiffuseColor(COLOR_YELLOW);
 			glTranslated(2.3,0,1);
 			drawBox(0.5,0.5,1.07);
+			// arm1 end
 			// arm joint start
 			glPushMatrix();
 			setDiffuseColor(COLOR_RED);
@@ -232,7 +233,6 @@ void SampleModel::draw()
 				// arm2 end
 			glPopMatrix();
 			// arm joint end
-			// arm1 end
 			glPopMatrix();
 			// right hand end
 

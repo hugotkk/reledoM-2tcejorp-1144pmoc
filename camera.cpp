@@ -1,7 +1,6 @@
 #include <windows.h>
 #include <Fl/gl.h>
 #include <gl/glu.h>
-
 #include "camera.h"
 
 #pragma warning(push)
@@ -166,6 +165,49 @@ void Camera::dragMouse( int x, int y )
 
 }
 
+void Camera::lookAt(Vec3f eye, Vec3f at, Vec3f up){
+	//Calculate eye direction vector
+	GLfloat* vpn = new GLfloat[3];
+	vpn[0] = -eye[0];
+	vpn[1] = -eye[1];
+	vpn[2] = -eye[2];
+	
+	//Normalize it
+	GLfloat len = sqrt(vpn[0] * vpn[0] + vpn[1] * vpn[1] + vpn[2] * vpn[2]);
+	vpn[0] /= len;
+	vpn[1] /= len;
+	vpn[2] /= len;
+
+	//Calculate eye x up
+	GLfloat* rv = new GLfloat[3];
+	rv[0] = vpn[1] * up[2] - vpn[2] * up[1];
+	rv[1] = vpn[2] * up[0] - vpn[0] * up[2];
+	rv[2] = vpn[0] * up[1] - vpn[1] * up[0];
+
+	len = sqrt(rv[0] * rv[0] + rv[1] * rv[1] + rv[2] * rv[2]);
+	rv[0] /= len;
+	rv[1] /= len;
+	rv[2] /= len;
+
+	//Calculate rv x eye
+	GLfloat* nup = new GLfloat[3];
+	nup[0] = rv[1] * vpn[2] - rv[2] * vpn[1];
+	nup[1] = rv[2] * vpn[0] - rv[0] * vpn[2];
+	nup[2] = rv[0] * vpn[1] - rv[1] * vpn[0];
+	//Put it all in a prett[1] Matri[0]
+	GLfloat mat[16] = {
+		rv[0], nup[0], -vpn[0], 0,
+		rv[1], nup[1], -vpn[1], 0,
+		rv[2], nup[2], -vpn[2], 0,
+		0, 0, 0, 1
+	};
+
+
+//	Apply the matrix and translate to eyepoint
+	glMultMatrixf(mat);
+	glTranslatef(-eye[0], -eye[1], -eye[2]);
+}
+
 void Camera::releaseMouse( int x, int y )
 {
 	mCurrentMouseAction = kActionNone;
@@ -178,9 +220,11 @@ void Camera::applyViewingTransform() {
 
 	// Place the camera at mPosition, aim the camera at
 	// mLookAt, and twist the camera such that mUpVector is up
-	gluLookAt(	mPosition[0], mPosition[1], mPosition[2],
-				mLookAt[0],   mLookAt[1],   mLookAt[2],
-				mUpVector[0], mUpVector[1], mUpVector[2]);
+
+	lookAt(mPosition,mLookAt,mUpVector);
+	// gluLookAt(	mPosition[0], mPosition[1], mPosition[2],
+	// 			mLookAt[0],   mLookAt[1],   mLookAt[2],
+	// 			mUpVector[0], mUpVector[1], mUpVector[2]);
 }
 
 #pragma warning(pop)

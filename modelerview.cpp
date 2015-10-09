@@ -7,6 +7,9 @@
 #include <GL/glu.h>
 #include <cstdio>
 
+#include "modelerapp.h"
+#include "modelerglobals.h"
+
 static const int	kMouseRotationButton			= FL_LEFT_MOUSE;
 static const int	kMouseTranslationButton			= FL_MIDDLE_MOUSE;
 static const int	kMouseZoomButton				= FL_RIGHT_MOUSE;
@@ -90,6 +93,8 @@ void ModelerView::draw()
 		glEnable( GL_LIGHT0 );
         glEnable( GL_LIGHT1 );
 		glEnable( GL_NORMALIZE );
+		glEnable(GL_FOG);
+
 		glClearColor(1,1,1,1);
     }
 
@@ -97,11 +102,22 @@ void ModelerView::draw()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(30.0,float(w())/float(h()),1.0,100.0);
-				
+	
+
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     m_camera->applyViewingTransform();
+
+    lightPosition0[0] = VAL(LIGHT_POSITION_X);
+    lightPosition0[1] = VAL(LIGHT_POSITION_Y);
+    lightPosition0[2] = VAL(LIGHT_POSITION_Z);
+
+	GLfloat FogCol[4] = { 1, 1, 1, 1 };
+    glFogfv(GL_FOG_COLOR,FogCol);
+	glFogi(GL_FOG_MODE, GL_EXP);
+    glFogf(GL_FOG_DENSITY, VAL(FOG)/10);
+	glHint(GL_FOG_HINT, GL_NICEST);
 
     glLightfv( GL_LIGHT0, GL_POSITION, lightPosition0 );
     glLightfv( GL_LIGHT0, GL_DIFFUSE, lightDiffuse0 );

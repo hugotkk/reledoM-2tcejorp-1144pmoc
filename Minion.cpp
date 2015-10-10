@@ -56,17 +56,26 @@ void Minion::draw() {
 				glPushMatrix(); 
 					setDiffuseColor(COLOR_YELLOW);
 					glTranslated(0, 0, 0.25);
-					drawCylinder(2, 2, 2); // head 
+					drawCylinder(2, 2, 2); // head
 
-					
 					if(VAL(LEVEL)>=4){
+
 					glPushMatrix(); 
+
+						setDiffuseColor(COLOR_YELLOW);
 						glTranslated(0, 0, 2);
 						drawSphere(2);    // forehead 
 
 						// Hair 
-						
 						if(VAL(LEVEL)>=5){
+
+
+						glPushMatrix();
+						setDiffuseColor(COLOR_DARK);
+						glTranslated(0, 0, 1.75);
+						drawCylinder(0.5, 2.1, 2.1); // 頭巾
+						glPopMatrix();
+
 						glPushMatrix(); 
 							setDiffuseColor(COLOR_BLACK);
 							glTranslated(0, 0, 2);

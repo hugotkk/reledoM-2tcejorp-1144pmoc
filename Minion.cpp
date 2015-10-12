@@ -72,7 +72,8 @@ void Minion::draw() {
 
 						glPushMatrix();
 						setDiffuseColor(COLOR_DARK);
-						glTranslated(0, 0, 1.75);
+						//1.75
+						glTranslated(0, 0, -0.25);
 						drawCylinder(0.5, 2.1, 2.1); // 頭巾
 						glPopMatrix();
 

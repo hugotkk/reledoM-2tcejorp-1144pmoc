@@ -5,7 +5,7 @@
 #include "modelerdraw.h"
 #include "modelerglobals.h"
 #include "modelerapp.h"
-
+#include "LSystem.h"
 class Minion : public ModelerView {
 
 public:

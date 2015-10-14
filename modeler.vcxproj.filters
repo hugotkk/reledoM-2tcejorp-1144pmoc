@@ -39,6 +39,9 @@
     <ClCompile Include="Minion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bitmap.h">
@@ -69,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Minion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

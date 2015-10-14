@@ -4,6 +4,7 @@
 #include "modelerapp.h"
 #include "modelerdraw.h"
 #include "Minion.h"
+#include "LSystem.h"
 #include <FL/gl.h>
 
 #include "modelerglobals.h"
@@ -303,8 +304,12 @@ int main()
 	// Initialize the controls
 	// Constructor is ModelerControl(name, minimumvalue, maximumvalue, 
 	// stepsize, defaultvalue)
+	LSystem lSystem("X", 3);
+	lSystem.expan(0);
+	lSystem.printString();
+
     ModelerControl controls[NUMCONTROLS];
-    controls[XPOS] = ModelerControl("X Position", -5, 5, 0.1f, 0);
+	controls[XPOS] = ModelerControl(lSystem.printString(), -5, 5, 0.1f, 0);
     controls[YPOS] = ModelerControl("Y Position", 0, 5, 0.1f, 0);
     controls[ZPOS] = ModelerControl("Z Position", -5, 5, 0.1f, 0);
 

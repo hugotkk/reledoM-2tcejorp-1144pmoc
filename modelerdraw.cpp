@@ -419,34 +419,15 @@ void drawTriangle( double x1, double y1, double z1,
 static GLuint textureName;
 
 void textureInitialization() {
-	/*int width, height;
-	unsigned char *data = readBMP("texture.bmp", width, height);
-	glGenTextures(1, &textureName);
-	glBindTexture(GL_TEXTURE_2D, textureName);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
-		GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-		GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width,
-		height, 0, GL_RGB, GL_UNSIGNED_BYTE,
-		data);
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);*/
-
-	glEnable(GL_TEXTURE_2D);
-	glGenTextures(1, &textureName);
-	glBindTexture(GL_TEXTURE_2D, textureName);
-
+	int height;
+	int width;
+	unsigned char* data = readBMP("hehe.bmp", width, height);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	int height;
-	int width;
-	unsigned char* data = readBMP("texture.bmp", width, height);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 	glDisable(GL_TEXTURE_2D);
 	delete[]data;
@@ -484,13 +465,14 @@ void drawTextureCylinder(double h, double r1, double r2)
 		textureInitialization();
 		GLUquadricObj* gluq;
 
-		glEnable(GL_TEXTURE_2D);
-		
 		/* GLU will again do the work.  draw the sides of the cylinder. */
 		gluq = gluNewQuadric();
+
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, textureName);
 		gluQuadricDrawStyle(gluq, GLU_FILL);
 		gluQuadricTexture(gluq, GL_TRUE);
-		glBindTexture(GL_TEXTURE_2D, textureName);
+		
 		gluCylinder(gluq, r1, r2, h, divisions, divisions);
 		gluDeleteQuadric(gluq);
 
@@ -498,7 +480,7 @@ void drawTextureCylinder(double h, double r1, double r2)
 		{
 			/* if the r1 end does not come to a point, draw a flat disk to
 			cover it up. */
-
+			
 			gluq = gluNewQuadric();
 			gluQuadricDrawStyle(gluq, GLU_FILL);
 			gluQuadricTexture(gluq, GL_TRUE);

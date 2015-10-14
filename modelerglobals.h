@@ -41,6 +41,7 @@ enum SampleModelControls
 	LIGHT_POSITION_Z,
 	LEVEL,
 	FOG,
+	SHOW_WING,
 	NUMCONTROLS
 };
 

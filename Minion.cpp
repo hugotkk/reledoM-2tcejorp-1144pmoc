@@ -21,6 +21,12 @@ void Minion::draw() {
 		drawTextureCylinder(2, 1.75, 2);
 
 			if(VAL(LEVEL)>=1){
+			glPushMatrix();
+			setDiffuseColor(COLOR_BLACK);
+			glRotated(90,1,0,0);
+			glTranslated(0,1.5,-2.1);
+			drawWing();
+			glPopMatrix();
 			glPushMatrix(); 
 				setDiffuseColor(COLOR_YELLOW);
 				glTranslated(-0.3, 0, 1.5);

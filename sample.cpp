@@ -326,7 +326,11 @@ int main()
 	controls[RIGHT_FORE_ARM_ROTATION_Y] = ModelerControl("Right Fore Arm Rotation Y", -60, 60, 1, 0);
 	controls[RIGHT_FORE_ARM_ROTATION_Z] = ModelerControl("Right Fore Arm Rotation Z", -150, 0, 1, 0);
 
+	controls[LEFT_LEG_ROTATION] = ModelerControl("Left Leg Rotation", -15, 15, 1, 0);
+	controls[RIGHT_LEG_ROTATION] = ModelerControl("Right Leg Rotation", -15, 15, 1, 0);
+
 	controls[L_SYSTEM_DEPTH] = ModelerControl("L System Depth", 1, 8, 1, 0);
+	controls[L_SYSTEM_ANGLE] = ModelerControl("L System Angle", 20, 100, 1, 0);
 
 	controls[WHOLE_SCALE_X] = ModelerControl("Whole Scale X", 0.1, 1, 0.1, 1);
 	controls[WHOLE_SCALE_Y] = ModelerControl("Whole Scale Y", 0.1, 1, 0.1, 1);

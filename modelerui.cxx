@@ -246,6 +246,16 @@ void ModelerUserInterface::cb_m_controlsAnimOnMenu(Fl_Menu_* o, void* v) {
   ((ModelerUserInterface*)(o->parent()->user_data()))->cb_m_controlsAnimOnMenu_i(o,v);
 }
 
+void ModelerUserInterface::cb_FrameAll(Fl_Menu_* o, void* v) {
+	((ModelerUserInterface*)(o->parent()->user_data()))->cb_FrameAll_i(o, v);
+}
+
+void ModelerUserInterface::cb_FrameAll_i(Fl_Menu_* o, void* v) {
+	m_modelerView->m_camera->setLookAt(Vec3f(0, 0, 0));
+	m_modelerView->m_camera->setDolly(-50.0f);
+	m_modelerView->redraw();
+}
+
 Fl_Menu_Item ModelerUserInterface::menu_m_controlsMenuBar[] = {
  {"File", 0,  0, 0, 64, 0, 0, 14, 0},
  {"Save Raytracer File", 0,  (Fl_Callback*)ModelerUserInterface::cb_Save, 0, 0, 0, 0, 14, 0},
@@ -267,6 +277,9 @@ Fl_Menu_Item ModelerUserInterface::menu_m_controlsMenuBar[] = {
  {"Animate", 0,  0, 0, 64, 0, 0, 14, 0},
  {"Enable", 0,  (Fl_Callback*)ModelerUserInterface::cb_m_controlsAnimOnMenu, 0, 2, 0, 0, 14, 0},
  {0},
+ { "Function", 0, 0, 0, 64, 0, 0, 14, 0 },
+ { "Frame all", 0, (Fl_Callback*)ModelerUserInterface::cb_FrameAll, 0, 0, 0, 0, 14, 0 },
+ { 0 },
  {0}
 };
 // 11-01-2001: fixed bug that caused animation problems

@@ -26,6 +26,8 @@ public:
   Fl_Menu_Bar *m_controlsMenuBar;
   static Fl_Menu_Item menu_m_controlsMenuBar[];
 private:
+  static void cb_FrameAll(Fl_Menu_*, void*);
+  inline void cb_FrameAll_i(Fl_Menu_*, void*);
   inline void cb_Save_i(Fl_Menu_*, void*);
   static void cb_Save(Fl_Menu_*, void*);
   inline void cb_Save1_i(Fl_Menu_*, void*);

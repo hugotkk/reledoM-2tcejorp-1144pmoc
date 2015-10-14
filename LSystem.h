@@ -4,17 +4,18 @@
 #include <vector>
 #include <iostream>
 #include <FL/gl.h>
+#include "modelerglobals.h"
 
 class LSystem
 {
 private:
-	const float ANGLE = 20.0f;
+	float ANGLE;
 	
 	std::string str;
 	int DEPTH;
 	int currentDepth;
 public:
-	LSystem(std::string initialString,int depth);
+	LSystem(std::string initialString,int depth, int angle);
 	void expan(int depth);
 	const char * printString();
 	void rotateLeft();

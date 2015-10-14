@@ -77,7 +77,7 @@ void Minion::draw() {
 						drawCylinder(0.5, 2.1, 2.1); // 頭巾
 						glPopMatrix();
 
-						LSystem lSystem("X", VAL(L_SYSTEM_DEPTH));
+						LSystem lSystem("X", VAL(L_SYSTEM_DEPTH), VAL(L_SYSTEM_ANGLE));
 						lSystem.expan(0);
 
 						glPushMatrix(); 
@@ -217,7 +217,7 @@ void Minion::draw() {
 				setDiffuseColor(COLOR_YELLOW);
 				glTranslated(-2.8, 0, 1);
 				glTranslated(0, 0.25, 1.07);
-				glRotated(-VAL(LEFT_UPPER_ARM_ROTATION_X), 1.0, 0.0, 0.0);
+				glRotated(-animate(LEFT_UPPER_ARM_ROTATION_X, 110, -110, 11), 1.0, 0.0, 0.0);
 				glRotated(-VAL(LEFT_UPPER_ARM_ROTATION_Y), 0.0, 0.0, 1.0);
 				glTranslated(0, -0.25, -1.07);
 				drawBox(0.5, 0.5, 1.07);
@@ -267,7 +267,7 @@ void Minion::draw() {
 				setDiffuseColor(COLOR_YELLOW);
 				glTranslated(2.3, 0, 1);
 				glTranslated(0, 0.25, 1.07);
-				glRotated(-VAL(RIGHT_UPPER_ARM_ROTATION_X), 1.0, 0.0, 0.0);
+				glRotated(-animate(RIGHT_UPPER_ARM_ROTATION_X, 110, -110, 11), 1.0, 0.0, 0.0);
 				glRotated(VAL(RIGHT_UPPER_ARM_ROTATION_Y), 0.0, 0.0, 1.0);
 				glTranslated(0, -0.25, -1.07);
 				drawBox(0.5, 0.5, 1.07);
@@ -314,6 +314,7 @@ void Minion::draw() {
 			glPushMatrix(); 
 				// leg start
 				setDiffuseColor(COLOR_MBLUE);
+				glRotated(animate(LEFT_LEG_ROTATION, 15, -15, 1.5), 1.0, 0.0, 0.0);
 				glTranslated(-1.0, 0, -0.6);
 				drawCylinder(0.5, 0.5, 0.6);
 				// shoe start
@@ -336,6 +337,7 @@ void Minion::draw() {
 			glPushMatrix(); 
 				// leg start
 				setDiffuseColor(COLOR_MBLUE);
+				glRotated(animate(RIGHT_LEG_ROTATION, 15, -15, 1.5), 1.0, 0.0, 0.0);
 				glTranslated(1.0, 0, -0.6);
 				drawCylinder(0.5, 0.5, 0.6);
 				// shoe start

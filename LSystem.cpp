@@ -1,7 +1,7 @@
 #include "LSystem.h"
 
 
-LSystem::LSystem(std::string initialString, int depth) :str(initialString), DEPTH(depth), currentDepth(0)
+LSystem::LSystem(std::string initialString, int depth, int angle) :str(initialString), DEPTH(depth), currentDepth(0), ANGLE(angle)
 {
 }
 

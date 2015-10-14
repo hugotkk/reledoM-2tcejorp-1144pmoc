@@ -11,10 +11,7 @@ void LSystem::expan(int depth) {
 
 	for (int i = 0; i < str.length(); i++) {
 		std::string ch = str.substr(i, 1);
-		if (ch.compare("D") == 0) {
-			str.replace(i, 1, "DD");
-			i++;
-		} else if (ch.compare("X") == 0) {
+		if (ch.compare("X") == 0) {
 			str.replace(i, 1, "D[RX]D[LX]RX");
 			i += 11;
 		}

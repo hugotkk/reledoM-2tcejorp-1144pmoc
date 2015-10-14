@@ -11,8 +11,8 @@
 
 enum SampleModelControls
 { 
-	XPOS, 
-	YPOS, 
+	XPOS,
+	YPOS,
 	ZPOS,
 	// HEIGHT, 
 	// ROTATE,
@@ -29,6 +29,7 @@ enum SampleModelControls
 	RIGHT_UPPER_ARM_ROTATION_Z,
 	RIGHT_FORE_ARM_ROTATION_Y,
 	RIGHT_FORE_ARM_ROTATION_Z,
+	L_SYSTEM_DEPTH,
 	WHOLE_SCALE_X,
 	WHOLE_SCALE_Y,
 	WHOLE_SCALE_Z,

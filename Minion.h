@@ -5,6 +5,8 @@
 #include "modelerdraw.h"
 #include "modelerglobals.h"
 #include "modelerapp.h"
+#include "LSystem.h"
+#include "bitmap.h"
 
 class Minion : public ModelerView {
 

@@ -416,7 +416,109 @@ void drawTriangle( double x1, double y1, double z1,
     }
 }
 
+static GLuint textureName;
 
+void textureInitialization() {
+	int height;
+	int width;
+	unsigned char* data = readBMP("hehe.bmp", width, height);
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+	glDisable(GL_TEXTURE_2D);
+	delete[]data;
+}
+
+void drawTextureCylinder(double h, double r1, double r2)
+{
+	ModelerDrawState *mds = ModelerDrawState::Instance();
+	int divisions;
+
+	_setupOpenGl();
+	
+	switch (mds->m_quality)
+	{
+	case HIGH:
+		divisions = 32; break;
+	case MEDIUM:
+		divisions = 20; break;
+	case LOW:
+		divisions = 12; break;
+	case POOR:
+		divisions = 8; break;
+	}
+
+	if (mds->m_rayFile)
+	{
+		_dump_current_modelview();
+		fprintf(mds->m_rayFile,
+			"cone { height=%f; bottom_radius=%f; top_radius=%f;\n", h, r1, r2);
+		_dump_current_material();
+		fprintf(mds->m_rayFile, "})\n");
+	}
+	else
+	{
+		textureInitialization();
+		GLUquadricObj* gluq;
+
+		/* GLU will again do the work.  draw the sides of the cylinder. */
+		gluq = gluNewQuadric();
+
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, textureName);
+		gluQuadricDrawStyle(gluq, GLU_FILL);
+		gluQuadricTexture(gluq, GL_TRUE);
+		
+		gluCylinder(gluq, r1, r2, h, divisions, divisions);
+		gluDeleteQuadric(gluq);
+
+		if (r1 > 0.0)
+		{
+			/* if the r1 end does not come to a point, draw a flat disk to
+			cover it up. */
+			
+			gluq = gluNewQuadric();
+			gluQuadricDrawStyle(gluq, GLU_FILL);
+			gluQuadricTexture(gluq, GL_TRUE);
+			gluQuadricOrientation(gluq, GLU_INSIDE);
+			glBindTexture(GL_TEXTURE_2D, textureName);
+			gluDisk(gluq, 0.0, r1, divisions, divisions);
+			gluDeleteQuadric(gluq);
+		}
+
+		if (r2 > 0.0)
+		{
+			/* if the r2 end does not come to a point, draw a flat disk to
+			cover it up. */
+
+			/* save the current matrix mode. */
+			int savemode;
+			glGetIntegerv(GL_MATRIX_MODE, &savemode);
+
+			/* translate the origin to the other end of the cylinder. */
+			glMatrixMode(GL_MODELVIEW);
+			glPushMatrix();
+			glTranslated(0.0, 0.0, h);
+
+			/* draw a disk centered at the new origin. */
+			gluq = gluNewQuadric();
+			gluQuadricDrawStyle(gluq, GLU_FILL);
+			gluQuadricTexture(gluq, GL_TRUE);
+			gluQuadricOrientation(gluq, GLU_OUTSIDE);
+			gluDisk(gluq, 0.0, r2, divisions, divisions);
+			gluDeleteQuadric(gluq);
+
+			/* restore the matrix stack and mode. */
+			glPopMatrix();
+			glMatrixMode(savemode);
+		}
+	}
+	glDisable(GL_TEXTURE_2D);
+}
 
 
 

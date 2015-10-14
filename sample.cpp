@@ -4,6 +4,7 @@
 #include "modelerapp.h"
 #include "modelerdraw.h"
 #include "Minion.h"
+#include "LSystem.h"
 #include <FL/gl.h>
 
 #include "modelerglobals.h"
@@ -303,8 +304,9 @@ int main()
 	// Initialize the controls
 	// Constructor is ModelerControl(name, minimumvalue, maximumvalue, 
 	// stepsize, defaultvalue)
+
     ModelerControl controls[NUMCONTROLS];
-    controls[XPOS] = ModelerControl("X Position", -5, 5, 0.1f, 0);
+	controls[XPOS] = ModelerControl("X Position", -5, 5, 0.1f, 0);
     controls[YPOS] = ModelerControl("Y Position", 0, 5, 0.1f, 0);
     controls[ZPOS] = ModelerControl("Z Position", -5, 5, 0.1f, 0);
 
@@ -323,6 +325,8 @@ int main()
 	controls[RIGHT_UPPER_ARM_ROTATION_Z] =ModelerControl("Right Upper Arm Rotation Z", 0, 36, 1, 0);
 	controls[RIGHT_FORE_ARM_ROTATION_Y] = ModelerControl("Right Fore Arm Rotation Y", -60, 60, 1, 0);
 	controls[RIGHT_FORE_ARM_ROTATION_Z] = ModelerControl("Right Fore Arm Rotation Z", -150, 0, 1, 0);
+
+	controls[L_SYSTEM_DEPTH] = ModelerControl("L System Depth", 1, 8, 1, 0);
 
 	controls[WHOLE_SCALE_X] = ModelerControl("Whole Scale X", 0.1, 1, 0.1, 1);
 	controls[WHOLE_SCALE_Y] = ModelerControl("Whole Scale Y", 0.1, 1, 0.1, 1);

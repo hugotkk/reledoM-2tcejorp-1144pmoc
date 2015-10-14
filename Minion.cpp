@@ -11,14 +11,14 @@ void Minion::draw() {
 		glTranslated(VAL(XPOS), VAL(YPOS), VAL(ZPOS));
 		glScaled(VAL(WHOLE_SCALE_X),VAL(WHOLE_SCALE_Y),VAL(WHOLE_SCALE_Z));
 		
-		glTranslated(0, -2, 0);
+		glTranslated(0, -3, 0);
 		glRotated(-90, 1.0, 0.0, 0.0);
 
 		// body rt:
 		
 		
 		glPushMatrix(); 
-			drawCylinder(2, 1.75, 2);
+		drawTextureCylinder(2, 1.75, 2);
 
 			if(VAL(LEVEL)>=1){
 			glPushMatrix(); 
@@ -53,7 +53,7 @@ void Minion::draw() {
 
 				
 				if(VAL(LEVEL)>=3){
-				glPushMatrix(); 
+				glPushMatrix();
 					setDiffuseColor(COLOR_YELLOW);
 					glTranslated(0, 0, 0.25);
 					drawCylinder(2, 2, 2); // head
@@ -77,24 +77,39 @@ void Minion::draw() {
 						drawCylinder(0.5, 2.1, 2.1); // 頭巾
 						glPopMatrix();
 
+						LSystem lSystem("X", VAL(L_SYSTEM_DEPTH));
+						lSystem.expan(0);
+
 						glPushMatrix(); 
 							setDiffuseColor(COLOR_BLACK);
-							glTranslated(0, 0, 2);
-							drawCylinder(0.6, 0.1, 0.1);
+							glTranslated(0, 0, 1);
+							//drawCylinder(0.6, 0.1, 0.1);
+							glPushMatrix();
+								glRotated(90, 1.0, 0.0, 0.0);
+								lSystem.drawLSystem();
+							glPopMatrix();
 						glPopMatrix();
 						
 						glPushMatrix(); 
 							setDiffuseColor(COLOR_BLACK);
 							glRotated(-10, 0.0, 1.0, 0.0);
-							glTranslated(0, 0, 2);
-							drawCylinder(0.6, 0.1, 0.1);
+							glTranslated(0, 0, 1);
+							//drawCylinder(0.6, 0.1, 0.1);
+							glPushMatrix();
+								glRotated(90, 1.0, 0.0, 0.0);
+								lSystem.drawLSystem();
+							glPopMatrix();
 						glPopMatrix();
 						
 						glPushMatrix(); 
 							setDiffuseColor(COLOR_BLACK);
 							glRotated(10, 0.0, 1.0, 0.0);
-							glTranslated(0, 0, 2);
-							drawCylinder(0.6, 0.1, 0.1);
+							glTranslated(0, 0, 1);
+							//drawCylinder(0.6, 0.1, 0.1);
+							glPushMatrix();
+								glRotated(90, 1.0, 0.0, 0.0);
+								lSystem.drawLSystem();
+							glPopMatrix();
 						glPopMatrix();
 						}
 

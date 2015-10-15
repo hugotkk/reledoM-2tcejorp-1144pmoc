@@ -416,7 +416,7 @@ void drawTriangle( double x1, double y1, double z1,
     }
 }
 
-static GLuint textureName;
+static GLuint textureID;
 
 void textureInitialization() {
 	int height;
@@ -469,7 +469,7 @@ void drawTextureCylinder(double h, double r1, double r2)
 		gluq = gluNewQuadric();
 
 		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, textureName);
+		glBindTexture(GL_TEXTURE_2D, textureID);
 		gluQuadricDrawStyle(gluq, GLU_FILL);
 		gluQuadricTexture(gluq, GL_TRUE);
 		
@@ -485,7 +485,7 @@ void drawTextureCylinder(double h, double r1, double r2)
 			gluQuadricDrawStyle(gluq, GLU_FILL);
 			gluQuadricTexture(gluq, GL_TRUE);
 			gluQuadricOrientation(gluq, GLU_INSIDE);
-			glBindTexture(GL_TEXTURE_2D, textureName);
+			glBindTexture(GL_TEXTURE_2D, textureID);
 			gluDisk(gluq, 0.0, r1, divisions, divisions);
 			gluDeleteQuadric(gluq);
 		}
@@ -518,6 +518,30 @@ void drawTextureCylinder(double h, double r1, double r2)
 		}
 	}
 	glDisable(GL_TEXTURE_2D);
+}
+
+void drawPyramid() {
+	ModelerDrawState *mds = ModelerDrawState::Instance();
+
+	_setupOpenGl();
+	glBegin(GL_TRIANGLES);
+	glColor3f(1.0f, 0.0f, 0.0f); glVertex3f(0.0f, 1.f, 0.0f);
+	glColor3f(0.0f, 1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+	glColor3f(0.0f, 0.0f, 1.0f); glVertex3f(1.0f, -1.0f, 1.0f);
+
+	glColor3f(1.0f, 0.0f, 0.0f); glVertex3f(0.0f, 1.0f, 0.0f);
+	glColor3f(0.0f, 1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+	glColor3f(0.0f, 0.0f, 1.0f); glVertex3f(0.0f, -1.0f, -1.0f);
+
+	glColor3f(1.0f, 0.0f, 0.0f); glVertex3f(0.0f, 1.0f, 0.0f);
+	glColor3f(0.0f, 1.0f, 0.0f); glVertex3f(0.0f, -1.0f, -1.0f);
+	glColor3f(0.0f, 0.0f, 1.0f); glVertex3f(1.0f, -1.0f, 1.0f);
+
+	glColor3f(1.0f, 0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+	glColor3f(0.0f, 1.0f, 0.0f); glVertex3f(0.0f, -1.0f, -1.0f);
+	glColor3f(0.0f, 0.0f, 1.0f); glVertex3f(1.0f, -1.0f, 1.0f);
+	glEnd();
+	
 }
 
 

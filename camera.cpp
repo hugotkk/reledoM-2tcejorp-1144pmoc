@@ -178,7 +178,7 @@ void Camera::lookAt(Vec3f eye, Vec3f at, Vec3f up){
 	vpn[1] /= len;
 	vpn[2] /= len;
 
-	//Calculate eye x up
+	//Calculate -eye x up
 	GLfloat* rv = new GLfloat[3];
 	rv[0] = vpn[1] * up[2] - vpn[2] * up[1];
 	rv[1] = vpn[2] * up[0] - vpn[0] * up[2];
@@ -189,7 +189,7 @@ void Camera::lookAt(Vec3f eye, Vec3f at, Vec3f up){
 	rv[1] /= len;
 	rv[2] /= len;
 
-	//Calculate rv x eye
+	//Calculate rv x -eye
 	GLfloat* nup = new GLfloat[3];
 	nup[0] = rv[1] * vpn[2] - rv[2] * vpn[1];
 	nup[1] = rv[2] * vpn[0] - rv[0] * vpn[2];

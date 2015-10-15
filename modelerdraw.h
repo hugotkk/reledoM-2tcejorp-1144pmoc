@@ -95,4 +95,6 @@ void drawTriangle( double x1, double y1, double z1,
 			       double x3, double y3, double z3 );
 
 void drawTextureCylinder(double h, double r1, double r2);
+
+void drawPyramid();
 #endif

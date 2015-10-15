@@ -186,7 +186,15 @@ void Minion::draw() {
 					glPopMatrix();
 					}
 
-					
+					if (VAL(LEVEL) >= 4) {
+						setDiffuseColor(COLOR_BLUE);
+						glPushMatrix();
+						glRotated(180, 0, 0, 1);
+						glTranslated(0, 1.5, 1.2);
+						drawPyramid();
+						glPopMatrix();
+					}
+
 					if(VAL(LEVEL)>=4){
 					glPushMatrix(); 
 						// Mouth

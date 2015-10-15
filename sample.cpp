@@ -342,6 +342,8 @@ int main()
 
 	controls[LEVEL] = ModelerControl("LEVEL OF DETAILS", 1, 6, 1, 6);
 	controls[FOG] = ModelerControl("Fog Intensity", 0, 2, 0.5, 0);
+	controls[SHOW_WING] = ModelerControl("Show the batman wing", 0, 1, 1, 0);
+
 
 	/*
     controls[HEIGHT] = ModelerControl("Height", 1, 2.5, 0.1f, 1);

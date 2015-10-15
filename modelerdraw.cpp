@@ -544,12 +544,177 @@ void drawPyramid() {
 	
 }
 
+void drawWing()
+{
+    ModelerDrawState *mds = ModelerDrawState::Instance();
 
-
-
-
-
-
-
-
+    _setupOpenGl();
+    
+    if (mds->m_rayFile)
+    {
+        _dump_current_modelview();
+  
+        _dump_current_material();
+        fprintf(mds->m_rayFile,  "})))\n" );
+    }
+    else
+    {
+        /* remember which matrix mode OpenGL was in. */
+        int savemode;
+        glGetIntegerv( GL_MATRIX_MODE, &savemode );
+        
+        /* switch to the model matrix and scale by x,y,z. */
+        glMatrixMode( GL_MODELVIEW );
+        glPushMatrix();
+        glBegin(GL_POLYGON);
+        glVertex3d(0,1.4,0);
+        glVertex3d(.1,1.37,0);
+        glVertex3d(.2,1.35,0);
+        glVertex3d(.2,0,0);
+        glVertex3d(0,0,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(.2,1.35,0);
+        glVertex3d(.4,2,0);
+        glVertex3d(.5,1,0);
+        glVertex3d(.5,-1,0);
+        glVertex3d(.2,0,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(0,0,0);
+        glVertex3d(.6,0,0);
+        glVertex3d(.5,-1,0);
+        glVertex3d(0,-2,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(0.3,0.9,0);
+        glVertex3d(0.8,0.9,0);
+        glVertex3d(1.1,-0.6,0);
+        glVertex3d(0.5,-1,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(0,0,0);
+        glVertex3d(0.85,-.75,0);
+        glVertex3d(0.4,-1.15,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(0.8,0.9,0);
+        glVertex3d(1.2,1,0);
+        glVertex3d(2.35,-0.1,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(0.8,0.9,0);
+        glVertex3d(1.1,-0.6,0);
+        glVertex3d(2.35,-0.1,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(1.2,1,0);
+        glVertex3d(1.4,1.1,0);
+        glVertex3d(3.9,0,0);
+        glVertex3d(2.35,-0.1,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(1.4,1.1,0);
+        glVertex3d(1.6,1.3,0);
+        glVertex3d(4.15,0.5,0);
+        glVertex3d(3.9,0,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(1.6,1.3,0);
+        glVertex3d(1.75,1.6,0);
+        glVertex3d(4.4,0.85,0);
+        glVertex3d(4.15,0.5,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(1.75,1.6,0);
+        glVertex3d(1.85,1.9,0);
+        glVertex3d(5,1.3,0);
+        glVertex3d(4.4,0.85,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(1.85,1.9,0);
+        glVertex3d(1.9,2.2,0);
+        glVertex3d(7,2.2,0);
+        glVertex3d(5,1.3,0);
+        glEnd();
+        
+        //------------------------leftSIDE
+        glBegin(GL_POLYGON);
+        glVertex3d(-0,1.4,0);
+        glVertex3d(-.1,1.37,0);
+        glVertex3d(-.2,1.35,0);
+        glVertex3d(-.2,0,0);
+        glVertex3d(-0,0,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(-.2,1.35,0);
+        glVertex3d(-.4,2,0);
+        glVertex3d(-.5,1,0);
+        glVertex3d(-.5,-1,0);
+        glVertex3d(-.2,0,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(-0,0,0);
+        glVertex3d(-.6,0,0);
+        glVertex3d(-.5,-1,0);
+        glVertex3d(-0,-2,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(-0.3,0.9,0);
+        glVertex3d(-0.8,0.9,0);
+        glVertex3d(-1.1,-0.6,0);
+        glVertex3d(-0.5,-1,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(-0,0,0);
+        glVertex3d(-0.85,-.75,0);
+        glVertex3d(-0.4,-1.15,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(-0.8,0.9,0);
+        glVertex3d(-1.2,1,0);
+        glVertex3d(-2.35,-0.1,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(-0.8,0.9,0);
+        glVertex3d(-1.1,-0.6,0);
+        glVertex3d(-2.35,-0.1,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(-1.2,1,0);
+        glVertex3d(-1.4,1.1,0);
+        glVertex3d(-3.9,0,0);
+        glVertex3d(-2.35,-0.1,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(-1.4,1.1,0);
+        glVertex3d(-1.6,1.3,0);
+        glVertex3d(-4.15,0.5,0);
+        glVertex3d(-3.9,0,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(-1.6,1.3,0);
+        glVertex3d(-1.75,1.6,0);
+        glVertex3d(-4.4,0.85,0);
+        glVertex3d(-4.15,0.5,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(-1.75,1.6,0);
+        glVertex3d(-1.85,1.9,0);
+        glVertex3d(-5,1.3,0);
+        glVertex3d(-4.4,0.85,0);
+        glEnd();
+        glBegin(GL_POLYGON);
+        glVertex3d(-1.85,1.9,0);
+        glVertex3d(-1.9,2.2,0);
+        glVertex3d(-7,2.2,0);
+        glVertex3d(-5,1.3,0);
+        glEnd();
+        
+        /* restore the model matrix stack, and switch back to the matrix
+        mode we were in. */
+        glPopMatrix();
+        glMatrixMode( savemode );
+    }
+}
 
